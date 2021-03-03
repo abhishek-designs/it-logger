@@ -1,0 +1,40 @@
+{
+  "logs": [
+    {
+      "message": "Fix the Bloatwares",
+      "tech": "Sara Williams",
+      "attention": true,
+      "date": "Wed, 03 Mar 2021 13:03:35 GMT",
+      "id": 1
+    },
+    {
+      "message": "Removed the virus",
+      "tech": "Gary Simon",
+      "attention": false,
+      "date": "Wed, 03 Mar 2021 13:06:43 GMT",
+      "id": 2
+    }
+  ],
+  "techs": [
+    {
+      "id": 1,
+      "firstName": "John",
+      "lastName": "Doe"
+    },
+    {
+      "id": 2,
+      "firstName": "Sara",
+      "lastName": "Williams"
+    },
+    {
+      "id": 3,
+      "firstName": "Mike",
+      "lastName": "Smith"
+    },
+    {
+      "firstName": "Gary",
+      "lastName": "Simon",
+      "id": 4
+    }
+  ]
+}
