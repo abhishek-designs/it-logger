@@ -1,15 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import { deleteLog } from "../../actions/logAction";
+import { deleteLog, setCurrentLog } from "../../actions/logAction";
 import PropTypes from "prop-types";
 
-const LogItem = ({ logItem, deleteLog }) => {
+const LogItem = ({ logItem, deleteLog, setCurrentLog }) => {
   const { id, message, attention, tech, date } = logItem;
 
   // Function to delete a log item
   const onDelete = (e) => {
     // Delete the log
     deleteLog(id);
+  };
+
+  // Function to set the current log to edit
+  const onCurrentSet = (e) => {
+    // Set the current log
+    setCurrentLog(logItem);
   };
 
   return (
@@ -23,8 +29,20 @@ const LogItem = ({ logItem, deleteLog }) => {
         {message} <span className="grey-text">log added by {tech}</span> <br />
         <span className="teal-text text-lighten-4">{date}</span>
       </span>
-      <a href="#!" className="secondary-content" onClick={onDelete}>
+      <a
+        href="#!"
+        className="secondary-content"
+        onClick={onDelete}
+        style={{ paddingLeft: "0.6rem" }}
+      >
         <i className="material-icons">delete</i>
+      </a>
+      <a
+        href="#log-modal"
+        className="secondary-content modal-trigger"
+        onClick={onCurrentSet}
+      >
+        <i className="material-icons">edit</i>
       </a>
     </li>
   );
@@ -33,6 +51,7 @@ const LogItem = ({ logItem, deleteLog }) => {
 LogItem.propTypes = {
   logItem: PropTypes.object.isRequired,
   deleteLog: PropTypes.func.isRequired,
+  setCurrentLog: PropTypes.func.isRequired,
 };
 
-export default connect(null, { deleteLog })(LogItem);
+export default connect(null, { deleteLog, setCurrentLog })(LogItem);

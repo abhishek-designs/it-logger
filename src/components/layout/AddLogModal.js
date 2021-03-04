@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import M from "materialize-css/dist/js/materialize.min.js";
-import { addLog } from "../../actions/logAction";
+import { addLog, editLog, clearCurrentLog } from "../../actions/logAction";
 import PropTypes from "prop-types";
 
-const AddLogModal = ({ addLog }) => {
+const AddLogModal = ({ current, addLog, editLog, clearCurrentLog }) => {
   // State attached with log inputs
   const [message, setMessage] = useState("");
   const [tech, setTech] = useState("");
@@ -38,10 +38,40 @@ const AddLogModal = ({ addLog }) => {
     }
   };
 
+  // Function to edit the log
+  const onEditLog = (e) => {
+    // Edit the log
+    editLog({
+      id: current.id,
+      message,
+      tech,
+      attention,
+      date: new Date().toUTCString(),
+    });
+  };
+
+  // Function to clear the current state log
+  const onClearCurrent = (e) => {
+    clearCurrentLog();
+  };
+
+  useEffect(() => {
+    // Check wether there is an current item in the state, if it is there then fill the inputs with the current values
+    if (current) {
+      const { message, tech, attention } = current;
+      setMessage(message);
+      setTech(tech);
+      setAttention(attention);
+    } else {
+      // Clear the inputs as usual
+      clearInput();
+    }
+  }, [current]);
+
   return (
     <div id="log-modal" className="modal">
       <div className="modal-content">
-        <h4 className="teal-text">Add Log</h4>
+        <h4 className="teal-text">{current ? "Edit Log" : "Add Log"}</h4>
         <div className="row">
           <form className="col s12">
             <div className="row">
@@ -52,7 +82,7 @@ const AddLogModal = ({ addLog }) => {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 />
-                <label htmlFor="message">Message</label>
+                {!current && <label htmlFor="message">Message</label>}
               </div>
               <div className="input-field col s6">
                 <select value={tech} onChange={(e) => setTech(e.target.value)}>
@@ -83,20 +113,52 @@ const AddLogModal = ({ addLog }) => {
         </div>
       </div>
       <div className="modal-footer">
-        <a
-          href="#!"
-          className="modal-close waves-effect teal btn"
-          onClick={onAdd}
-        >
-          <i className="material-icons left">add</i> Add
-        </a>
+        {current ? (
+          <>
+            <a
+              href="#!"
+              className="btn waves-effect white teal-text text-darken-4"
+              onClick={onClearCurrent}
+            >
+              <i className="material-icons left">clear</i>
+              Clear
+            </a>
+            <a
+              href="#!"
+              className="btn modal-close waves-effect teal"
+              style={{ marginLeft: "1rem" }}
+              onClick={onEditLog}
+            >
+              <i className="material-icons left">edit</i>
+              Edit
+            </a>
+          </>
+        ) : (
+          <a
+            href="#!"
+            className="modal-close waves-effect teal btn"
+            onClick={onAdd}
+          >
+            <i className="material-icons left">add</i> Add
+          </a>
+        )}
       </div>
     </div>
   );
 };
 
 AddLogModal.propTypes = {
+  current: PropTypes.object,
   addLog: PropTypes.func.isRequired,
+  editLog: PropTypes.func.isRequired,
+  clearCurrentLog: PropTypes.func.isRequired,
 };
 
-export default connect(null, { addLog })(AddLogModal);
+// Function to map the app level states to props
+const mapStateToProps = (state) => ({
+  current: state.log.current,
+});
+
+export default connect(mapStateToProps, { addLog, editLog, clearCurrentLog })(
+  AddLogModal
+);

@@ -1,18 +1,18 @@
 {
   "logs": [
     {
-      "message": "Fix the Bloatwares",
+      "message": "New cables recieved",
       "tech": "Sara Williams",
-      "attention": true,
-      "date": "Wed, 03 Mar 2021 13:03:35 GMT",
-      "id": 1
+      "attention": false,
+      "date": "Wed, 03 Mar 2021 16:44:55 GMT",
+      "id": 3
     },
     {
-      "message": "Removed the virus",
-      "tech": "Gary Simon",
+      "id": 4,
+      "message": "New 402 cables bought",
+      "tech": "",
       "attention": false,
-      "date": "Wed, 03 Mar 2021 13:06:43 GMT",
-      "id": 2
+      "date": "Thu, 04 Mar 2021 05:23:36 GMT"
     }
   ],
   "techs": [

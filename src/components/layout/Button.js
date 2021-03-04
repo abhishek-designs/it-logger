@@ -1,13 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-const Button = () => {
+const Button = ({ current }) => {
   return (
     <div className="fixed-action-btn">
       <a
         href="#log-modal"
         className="btn-floating wave-effect btn-large teal modal-trigger"
       >
-        <i className="material-icons">add</i>
+        <i className="material-icons">{current ? "edit" : "add"}</i>
       </a>
       <ul>
         <li>
@@ -28,4 +30,13 @@ const Button = () => {
   );
 };
 
-export default Button;
+Button.propTypes = {
+  current: PropTypes.object,
+};
+
+// Function to map the states to props
+const mapStateToProps = (state) => ({
+  current: state.log.current,
+});
+
+export default connect(mapStateToProps)(Button);
