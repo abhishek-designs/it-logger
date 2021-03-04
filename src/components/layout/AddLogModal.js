@@ -2,9 +2,17 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import M from "materialize-css/dist/js/materialize.min.js";
 import { addLog, editLog, clearCurrentLog } from "../../actions/logAction";
+import TechSelectOption from "./TechSelectOption";
 import PropTypes from "prop-types";
 
-const AddLogModal = ({ current, addLog, editLog, clearCurrentLog }) => {
+const AddLogModal = ({
+  current,
+  addLog,
+  editLog,
+  clearCurrentLog,
+  // tech: { techs, loading },
+  // getTechs,
+}) => {
   // State attached with log inputs
   const [message, setMessage] = useState("");
   const [tech, setTech] = useState("");
@@ -66,6 +74,9 @@ const AddLogModal = ({ current, addLog, editLog, clearCurrentLog }) => {
       // Clear the inputs as usual
       clearInput();
     }
+
+    // Get the techs from the server
+    // getTechs();
   }, [current]);
 
   return (
@@ -85,14 +96,14 @@ const AddLogModal = ({ current, addLog, editLog, clearCurrentLog }) => {
                 {!current && <label htmlFor="message">Message</label>}
               </div>
               <div className="input-field col s6">
-                <select value={tech} onChange={(e) => setTech(e.target.value)}>
+                <select
+                  className="browser-default"
+                  value={tech}
+                  onChange={(e) => setTech(e.target.value)}
+                >
                   <option value="">Choose technician</option>
-                  <option value="John Doe">John Doe</option>
-                  <option value="Sara Williams">Sara Williams</option>
-                  <option value="Mike Smith">Mike Smith</option>
-                  <option value="Gary Simon">Gary Simon</option>
+                  <TechSelectOption />
                 </select>
-                <label>Select Technician</label>
               </div>
               <div className="input-field col s6">
                 <p>
@@ -152,13 +163,19 @@ AddLogModal.propTypes = {
   addLog: PropTypes.func.isRequired,
   editLog: PropTypes.func.isRequired,
   clearCurrentLog: PropTypes.func.isRequired,
+  // tech: PropTypes.object.isRequired,
+  // getTechs: PropTypes.array.isRequired,
 };
 
 // Function to map the app level states to props
 const mapStateToProps = (state) => ({
   current: state.log.current,
+  // tech: state.tech,
 });
 
-export default connect(mapStateToProps, { addLog, editLog, clearCurrentLog })(
-  AddLogModal
-);
+export default connect(mapStateToProps, {
+  addLog,
+  editLog,
+  clearCurrentLog,
+  // getTechs,
+})(AddLogModal);

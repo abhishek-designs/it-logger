@@ -12,7 +12,14 @@
       "message": "New 402 cables bought",
       "tech": "",
       "attention": false,
-      "date": "Thu, 04 Mar 2021 05:23:36 GMT"
+      "date": "Thu, 04 Mar 2021 08:09:28 GMT"
+    },
+    {
+      "id": 5,
+      "message": "Now I'm trained",
+      "tech": "Luke Cage",
+      "attention": false,
+      "date": "Thu, 04 Mar 2021 10:44:58 GMT"
     }
   ],
   "techs": [
@@ -35,6 +42,11 @@
       "firstName": "Gary",
       "lastName": "Simon",
       "id": 4
+    },
+    {
+      "firstName": "Luke",
+      "lastName": "Cage",
+      "id": 5
     }
   ]
 }

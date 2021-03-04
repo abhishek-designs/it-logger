@@ -1,40 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import TechItem from "./TechItem";
+import { getTechs } from "../../actions/techAction";
+import PropTypes from "prop-types";
 
-const Techs = () => {
-  // Techs state
-  const [techs, setTech] = useState([]);
-  const [loading, setLoading] = useState(false);
-
+const Techs = ({ tech: { techs, loading }, getTechs }) => {
   useEffect(() => {
     // Load the technicians from the server
-    loadTechs();
+    getTechs();
     // eslint-disable-next-line
   }, []);
 
-  // Function to fetch all the registered technicians
-  const loadTechs = async () => {
-    try {
-      // Set the loading
-      setLoading(true);
-      const res = await fetch("/techs");
-      const data = await res.json();
-
-      // Store the techs into the state
-      setTech(data);
-      // Remove loading
-      setLoading(false);
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
   return (
     <ul className="collection">
-      {!loading && techs.length === 0
-        ? "No Technician Registered"
-        : techs.map((tech) => <TechItem key={tech.id} tech={tech} />)}
+      {!loading && techs
+        ? techs.map((techItem) => (
+            <TechItem key={techItem.id} techItem={techItem} />
+          ))
+        : "No Technician Registered"}
     </ul>
   );
 };
 
-export default Techs;
+Techs.propTypes = {
+  tech: PropTypes.object.isRequired,
+  getTechs: PropTypes.func.isRequired,
+};
+
+// Function to map the app level states to props
+const mapStateToProps = (state) => ({
+  tech: state.tech,
+});
+
+export default connect(mapStateToProps, { getTechs })(Techs);

@@ -1,12 +1,23 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import M from "materialize-css/dist/js/materialize.min.js";
+import { addTech } from "../../actions/techAction";
+import PropTypes from "prop-types";
 
-const AddTechModal = () => {
+const AddTechModal = ({ addTech }) => {
   // State for the technician input
   const [tech, setTech] = useState({
     firstName: "",
     lastName: "",
   });
+
+  // Function to clear the fields
+  const clearInput = () => {
+    setTech({
+      firstName: "",
+      lastName: "",
+    });
+  };
 
   // Function to run when typing in the input
   const onChange = (e) => {
@@ -25,10 +36,11 @@ const AddTechModal = () => {
       M.toast({ html: "Please fill out the fields" });
     } else {
       // Register the tech
-      console.log({
-        msg: "Tech Registered",
-        tech,
-      });
+      addTech(tech);
+      // Show the alert
+      M.toast({ html: `${tech.firstName} recruited as a technician` });
+      // Clear the fields also
+      clearInput();
     }
   };
 
@@ -69,4 +81,8 @@ const AddTechModal = () => {
   );
 };
 
-export default AddTechModal;
+AddTechModal.propTypes = {
+  addTech: PropTypes.func.isRequired,
+};
+
+export default connect(null, { addTech })(AddTechModal);
