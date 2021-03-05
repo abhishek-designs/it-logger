@@ -1,6 +1,9 @@
 import {
   GET_TECHS,
   ADD_TECH,
+  DELETE_TECH,
+  SET_TECH_DELETE,
+  REMOVE_TECH_DELETE,
   TECHS_ERROR,
   SET_LOADING,
 } from "../actions/types";
@@ -8,6 +11,7 @@ import {
 // Initial techs state
 const initialState = {
   techs: null,
+  isDeleting: false,
   loading: false,
   error: null,
 };
@@ -26,6 +30,22 @@ const techReducer = (state = initialState, action) => {
         ...state,
         techs: [...state.techs, action.payload],
         loading: false,
+      };
+    case DELETE_TECH:
+      return {
+        ...state,
+        techs: state.techs.filter((tech) => tech.id !== action.payload),
+        loading: false,
+      };
+    case SET_TECH_DELETE:
+      return {
+        ...state,
+        isDeleting: true,
+      };
+    case REMOVE_TECH_DELETE:
+      return {
+        ...state,
+        isDeleting: false,
       };
     case TECHS_ERROR:
       return {

@@ -4,6 +4,7 @@ import {
   ADD_LOG,
   EDIT_LOG,
   DELETE_LOG,
+  SEARCH_LOG,
   CURRENT_LOG,
   CLEAR_CURRENT,
   SET_LOADING,
@@ -105,6 +106,29 @@ export const deleteLog = (id) => async (dispatch) => {
     dispatch({
       type: DELETE_LOG,
       payload: id,
+    });
+  } catch (err) {
+    // Dispatch the error to the reducer
+    dispatch({
+      type: LOGS_ERROR,
+      payload: err.message,
+    });
+  }
+};
+
+// Function to search a log
+export const searchLog = (keyword) => async (dispatch) => {
+  try {
+    // Set the loading initially
+    setLoading();
+
+    const res = await fetch(`/logs?q=${keyword}`);
+    const data = await res.json();
+
+    // Dispatch the search results to the reducer
+    dispatch({
+      type: SEARCH_LOG,
+      payload: data,
     });
   } catch (err) {
     // Dispatch the error to the reducer

@@ -1,4 +1,5 @@
 import React from "react";
+import M from "materialize-css/dist/js/materialize.min.js";
 import { connect } from "react-redux";
 import { deleteLog, setCurrentLog } from "../../actions/logAction";
 import PropTypes from "prop-types";
@@ -10,6 +11,8 @@ const LogItem = ({ logItem, deleteLog, setCurrentLog }) => {
   const onDelete = (e) => {
     // Delete the log
     deleteLog(id);
+    // Also show the alert after deletion
+    M.toast({ html: "Log Removed" });
   };
 
   // Function to set the current log to edit

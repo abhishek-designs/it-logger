@@ -3,6 +3,7 @@ import {
   ADD_LOG,
   EDIT_LOG,
   DELETE_LOG,
+  SEARCH_LOG,
   LOGS_ERROR,
   CURRENT_LOG,
   CLEAR_CURRENT,
@@ -45,6 +46,12 @@ const logReducer = (state = initialState, action) => {
       return {
         ...state,
         logs: state.logs.filter((log) => log.id !== action.payload),
+        loading: false,
+      };
+    case SEARCH_LOG:
+      return {
+        ...state,
+        logs: action.payload,
         loading: false,
       };
     case CURRENT_LOG:

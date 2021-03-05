@@ -128,7 +128,7 @@ const AddLogModal = ({
           <>
             <a
               href="#!"
-              className="btn waves-effect white teal-text text-darken-4"
+              className="btn white teal-text text-darken-4"
               onClick={onClearCurrent}
             >
               <i className="material-icons left">clear</i>
@@ -136,7 +136,7 @@ const AddLogModal = ({
             </a>
             <a
               href="#!"
-              className="btn modal-close waves-effect teal"
+              className="btn modal-close teal"
               style={{ marginLeft: "1rem" }}
               onClick={onEditLog}
             >
@@ -145,11 +145,7 @@ const AddLogModal = ({
             </a>
           </>
         ) : (
-          <a
-            href="#!"
-            className="modal-close waves-effect teal btn"
-            onClick={onAdd}
-          >
+          <a href="#!" className="modal-close teal btn" onClick={onAdd}>
             <i className="material-icons left">add</i> Add
           </a>
         )}

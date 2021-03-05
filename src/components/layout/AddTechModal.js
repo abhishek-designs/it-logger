@@ -72,7 +72,7 @@ const AddTechModal = ({ addTech }) => {
         </div>
       </div>
       <div className="modal-footer">
-        <a href="#!" className="btn teal" onClick={registerTech}>
+        <a href="#!" className="btn teal modal-close" onClick={registerTech}>
           <i className="material-icons left">add</i>
           Register
         </a>
