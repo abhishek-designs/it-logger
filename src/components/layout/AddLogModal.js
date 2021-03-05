@@ -56,6 +56,8 @@ const AddLogModal = ({
       attention,
       date: new Date().toUTCString(),
     });
+    // Show the alert after updation
+    M.toast({ html: "Log Updated" });
   };
 
   // Function to clear the current state log

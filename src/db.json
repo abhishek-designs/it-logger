@@ -15,11 +15,11 @@
       "date": "Fri, 05 Mar 2021 09:15:47 GMT"
     },
     {
-      "message": "Buy the 78c drivers",
-      "tech": "Sam Wilson",
-      "attention": true,
-      "date": "Fri, 05 Mar 2021 10:40:37 GMT",
-      "id": 9
+      "id": 9,
+      "message": "Bought the 78c drivers",
+      "tech": "Kelly Smith",
+      "attention": false,
+      "date": "Fri, 05 Mar 2021 10:48:52 GMT"
     },
     {
       "message": "There is a blockage in the channel",
@@ -27,13 +27,6 @@
       "attention": true,
       "date": "Fri, 05 Mar 2021 10:41:00 GMT",
       "id": 10
-    },
-    {
-      "message": "Bought the new RC cables",
-      "tech": "Kelly Smith",
-      "attention": false,
-      "date": "Fri, 05 Mar 2021 10:41:35 GMT",
-      "id": 11
     }
   ],
   "techs": [
