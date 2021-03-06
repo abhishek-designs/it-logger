@@ -22,7 +22,7 @@ export const getLogs = () => async (dispatch) => {
     // Dispatch the data to the reducer
     dispatch({
       type: GET_LOGS,
-      payload: data,
+      payload: data.logs,
     });
   } catch (err) {
     // Dispatch the error to the reducer
@@ -52,7 +52,7 @@ export const addLog = (log) => async (dispatch) => {
     // Dispatch the new added log to the reducer
     dispatch({
       type: ADD_LOG,
-      payload: data,
+      payload: data.log,
     });
   } catch (err) {
     // Dispatch the error to the reducer
@@ -81,7 +81,7 @@ export const editLog = (log) => async (dispatch) => {
     // Dispatch the updated log data to the reducer
     dispatch({
       type: EDIT_LOG,
-      payload: data,
+      payload: data.log,
     });
   } catch (err) {
     // Dispatch the error to the reducer

@@ -15,7 +15,7 @@ const Techs = ({ tech: { techs, loading }, getTechs }) => {
     <ul className="collection">
       {!loading && techs
         ? techs.map((techItem) => (
-            <TechItem key={techItem.id} techItem={techItem} />
+            <TechItem key={techItem._id} techItem={techItem} />
           ))
         : "No Technician Registered"}
     </ul>

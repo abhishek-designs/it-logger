@@ -50,7 +50,7 @@ const AddLogModal = ({
   const onEditLog = (e) => {
     // Edit the log
     editLog({
-      id: current.id,
+      id: current._id,
       message,
       tech,
       attention,

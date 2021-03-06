@@ -5,12 +5,12 @@ import M from "materialize-css/dist/js/materialize.min.js";
 import PropTypes from "prop-types";
 
 const TechItem = ({ techItem, deleteTech, isDeleting }) => {
-  const { id, firstName, lastName } = techItem;
+  const { _id, firstName, lastName } = techItem;
 
   // Function to remove the tech
   const onDelete = (e) => {
     // Delete the tech
-    deleteTech(id);
+    deleteTech(_id);
     // Also show the alert
     M.toast({ html: `${firstName} suspended` });
   };

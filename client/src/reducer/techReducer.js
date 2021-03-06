@@ -34,7 +34,7 @@ const techReducer = (state = initialState, action) => {
     case DELETE_TECH:
       return {
         ...state,
-        techs: state.techs.filter((tech) => tech.id !== action.payload),
+        techs: state.techs.filter((tech) => tech._id !== action.payload),
         loading: false,
       };
     case SET_TECH_DELETE:

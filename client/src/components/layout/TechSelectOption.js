@@ -15,7 +15,7 @@ const TechSelectOption = ({ tech: { techs, loading }, getTechs }) => {
         techs &&
         techs.map((techItem) => (
           <option
-            key={techItem.id}
+            key={techItem._id}
             value={`${techItem.firstName} ${techItem.lastName}`}
           >
             {techItem.firstName} {techItem.lastName}

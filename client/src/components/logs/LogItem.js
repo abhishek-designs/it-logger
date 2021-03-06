@@ -5,12 +5,12 @@ import { deleteLog, setCurrentLog } from "../../actions/logAction";
 import PropTypes from "prop-types";
 
 const LogItem = ({ logItem, deleteLog, setCurrentLog }) => {
-  const { id, message, attention, tech, date } = logItem;
+  const { _id, message, attention, tech, date } = logItem;
 
   // Function to delete a log item
   const onDelete = (e) => {
     // Delete the log
-    deleteLog(id);
+    deleteLog(_id);
     // Also show the alert after deletion
     M.toast({ html: "Log Removed" });
   };
@@ -28,7 +28,7 @@ const LogItem = ({ logItem, deleteLog, setCurrentLog }) => {
       }`}
     >
       <span className="title">
-        <span className="grey-text">ID #{id} </span>
+        <span className="grey-text">ID #{_id} </span>
         {message} <span className="grey-text">log added by {tech}</span> <br />
         <span className="teal-text text-lighten-4">{date}</span>
       </span>

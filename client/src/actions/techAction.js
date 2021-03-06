@@ -49,7 +49,7 @@ export const addTech = (tech) => async (dispatch) => {
     // Dispatch the added tech to the reducer
     dispatch({
       type: ADD_TECH,
-      payload: data,
+      payload: data.tech,
     });
   } catch (err) {
     // Dispatch the error to the reducer

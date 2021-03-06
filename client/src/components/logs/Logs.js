@@ -12,7 +12,7 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
     // eslint-disable-next-line
   }, []);
 
-  if (loading || logs === null) {
+  if (loading || !logs) {
     // If there is loading then show the preloader
     return <Preloader />;
   }
@@ -25,7 +25,7 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
           <h4 className="teal-text">Added Logs</h4>
         </li>
         {logs.map((logItem) => (
-          <LogItem key={logItem.id} logItem={logItem} />
+          <LogItem key={logItem._id} logItem={logItem} />
         ))}
       </ul>
     </div>
