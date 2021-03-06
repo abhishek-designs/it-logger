@@ -1,6 +1,8 @@
 const express = require("express");
 const logsRouter = require("./routes/logsRoute");
 const techsRouter = require("./routes/techsRoute");
+const config = require("config");
+const connectDB = require("./config/connectDB");
 
 // Intialize the express app
 const app = express();
@@ -9,6 +11,9 @@ const app = express();
 app.use(express.json());
 app.use("/logs", logsRouter);
 app.use("/techs", techsRouter);
+
+// Connect the database
+connectDB(config.get("MONGO_URI"));
 
 // Create a test GET route
 app.get("/", (req, res) => {
