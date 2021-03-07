@@ -3,6 +3,7 @@ const logsRouter = require("./routes/logsRoute");
 const techsRouter = require("./routes/techsRoute");
 const config = require("config");
 const connectDB = require("./config/connectDB");
+const path = require("path");
 
 // Intialize the express app
 const app = express();
@@ -15,10 +16,15 @@ app.use("/techs", techsRouter);
 // Connect the database
 connectDB(config.get("MONGO_URI"));
 
-// Create a test GET route
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+// Check the platform wether it's a production or development
+if (process.env.NODE_ENV === "production") {
+  // App is in the production stage, then load the static index.html file
+  app.get("*", (req, res) => {
+    // If user hits any get route
+    express.static("client/build/");
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 
