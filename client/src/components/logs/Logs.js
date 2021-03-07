@@ -5,7 +5,7 @@ import Preloader from "../layout/Preloader";
 import PropTypes from "prop-types";
 import { getLogs } from "../../actions/logAction";
 
-const Logs = ({ log: { logs, loading }, getLogs }) => {
+const Logs = ({ log: { logs, loading, searchedLog }, getLogs }) => {
   useEffect(() => {
     // Fetch the logs when the component gets mounted
     getLogs();
@@ -22,11 +22,17 @@ const Logs = ({ log: { logs, loading }, getLogs }) => {
     <div className="logs-contain" style={{ marginTop: "3rem" }}>
       <ul className="collection with-header">
         <li className="collection-header">
-          <h4 className="teal-text">Added Logs</h4>
+          <h4 className="teal-text">
+            {searchedLog ? `${searchedLog.length} Log(s) Found` : "Added Logs"}
+          </h4>
         </li>
-        {logs.map((logItem) => (
-          <LogItem key={logItem._id} logItem={logItem} />
-        ))}
+        {searchedLog
+          ? searchedLog.map((logItem) => (
+              <LogItem key={logItem._id} logItem={logItem} />
+            ))
+          : logs.map((logItem) => (
+              <LogItem key={logItem._id} logItem={logItem} />
+            ))}
       </ul>
     </div>
   );

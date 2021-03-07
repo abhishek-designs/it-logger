@@ -5,6 +5,7 @@ import {
   EDIT_LOG,
   DELETE_LOG,
   SEARCH_LOG,
+  REMOVE_SEARCH,
   CURRENT_LOG,
   CLEAR_CURRENT,
   SET_LOADING,
@@ -117,26 +118,20 @@ export const deleteLog = (id) => async (dispatch) => {
 };
 
 // Function to search a log
-export const searchLog = (keyword) => async (dispatch) => {
-  try {
-    // Set the loading initially
-    setLoading();
+export const searchLog = (keyword) => {
+  // Simply return the type and the payload as it is not async function
+  return {
+    type: SEARCH_LOG,
+    payload: keyword.toLowerCase(),
+  };
+};
 
-    const res = await fetch(`/logs?q=${keyword}`);
-    const data = await res.json();
-
-    // Dispatch the search results to the reducer
-    dispatch({
-      type: SEARCH_LOG,
-      payload: data,
-    });
-  } catch (err) {
-    // Dispatch the error to the reducer
-    dispatch({
-      type: LOGS_ERROR,
-      payload: err.message,
-    });
-  }
+// Function to remove the search
+export const removeSearch = () => {
+  // Simply return the type as it is not async function
+  return {
+    type: REMOVE_SEARCH,
+  };
 };
 
 // Function to set the current log to the state

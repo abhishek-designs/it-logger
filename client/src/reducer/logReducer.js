@@ -4,6 +4,7 @@ import {
   EDIT_LOG,
   DELETE_LOG,
   SEARCH_LOG,
+  REMOVE_SEARCH,
   LOGS_ERROR,
   CURRENT_LOG,
   CLEAR_CURRENT,
@@ -13,6 +14,7 @@ import {
 // Set the initial log state
 const initialState = {
   logs: null,
+  searchedLog: null,
   loading: false,
   current: null,
   error: null,
@@ -51,8 +53,14 @@ const logReducer = (state = initialState, action) => {
     case SEARCH_LOG:
       return {
         ...state,
-        logs: action.payload,
-        loading: false,
+        searchedLog: state.logs.filter((log) =>
+          log.message.toLowerCase().includes(action.payload)
+        ),
+      };
+    case REMOVE_SEARCH:
+      return {
+        ...state,
+        searchedLog: null,
       };
     case CURRENT_LOG:
       return {

@@ -1,19 +1,28 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import "materialize-css/dist/css/materialize.min.css";
-import { searchLog } from "../../actions/logAction";
+import { searchLog, removeSearch } from "../../actions/logAction";
 import PropTypes from "prop-types";
 
-const Search = ({ searchLog }) => {
+const Search = ({ searchLog, removeSearch }) => {
   // State for the search input
   const [keyword, setKeyword] = useState("");
 
   // Function to set the keyword
   const onChange = (e) => {
     setKeyword(e.target.value);
+  };
 
-    // Search the logs through this keyword
-    searchLog(keyword);
+  // Function to search the log
+  const onSearch = (e) => {
+    // First checking wether there is a keyword
+    if (keyword === "") {
+      // Get the logs
+      removeSearch();
+    } else {
+      // Search the logs through this keyword
+      searchLog(keyword);
+    }
   };
 
   return (
@@ -27,6 +36,7 @@ const Search = ({ searchLog }) => {
               value={keyword}
               placeholder="Search Logs..."
               onChange={onChange}
+              onKeyUp={onSearch}
             />
             <label htmlFor="search" className="label-icon">
               <i className="material-icons">search</i>
@@ -41,6 +51,7 @@ const Search = ({ searchLog }) => {
 
 Search.propTypes = {
   searchLog: PropTypes.func.isRequired,
+  removeSearch: PropTypes.func.isRequired,
 };
 
-export default connect(null, { searchLog })(Search);
+export default connect(null, { searchLog, removeSearch })(Search);

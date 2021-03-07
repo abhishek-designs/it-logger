@@ -5,6 +5,7 @@ export const ADD_LOG = "ADD_LOG";
 export const EDIT_LOG = "EDIT_LOG";
 export const DELETE_LOG = "DELETE_LOG";
 export const SEARCH_LOG = "SEARCH_LOG";
+export const REMOVE_SEARCH = "REMOVE_SEARCH";
 export const CURRENT_LOG = "CURRENT_LOG";
 export const CLEAR_CURRENT = "CLEAR_CURRENT";
 
