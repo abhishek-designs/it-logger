@@ -19,7 +19,7 @@ connectDB(config.get("MONGO_URI"));
 // Check the platform wether it's a production or development
 if (process.env.NODE_ENV === "production") {
   // App is in the production stage, then load the static index.html file
-  express.static("client/build/");
+  app.use(express.static("client/build/"));
   app.get("*", (req, res) => {
     // If user hits any get route
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
