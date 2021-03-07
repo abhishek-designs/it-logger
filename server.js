@@ -8,13 +8,13 @@ const path = require("path");
 // Intialize the express app
 const app = express();
 
-// Creating the middlewares
-app.use(express.json());
-app.use("/logs", logsRouter);
-app.use("/techs", techsRouter);
-
 // Connect the database
 connectDB(config.get("MONGO_URI"));
+
+// Creating the middlewares
+app.use(express.json({ extended: true }));
+app.use("/logs", logsRouter);
+app.use("/techs", techsRouter);
 
 // Check the platform wether it's a production or development
 if (process.env.NODE_ENV === "production") {
