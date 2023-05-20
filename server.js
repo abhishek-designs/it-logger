@@ -1,7 +1,7 @@
 const express = require("express");
 const logsRouter = require("./routes/logsRoute");
 const techsRouter = require("./routes/techsRoute");
-const config = require("config");
+// const config = require("config");
 const connectDB = require("./config/connectDB");
 const path = require("path");
 
@@ -9,7 +9,7 @@ const path = require("path");
 const app = express();
 
 // Connect the database
-connectDB(config.get("MONGO_URI"));
+connectDB();
 
 // Creating the middlewares
 app.use(express.json({ extended: true }));
